@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <title>水厂</title>
+  <!--[if IE 8]>
+  <html lang="en" class="ie8 no-js"> <![endif]-->
+  <!--[if IE 9]>
+  <html lang="en" class="ie9 no-js"> <![endif]-->
+  <!--[if !IE]><!-->
+
+  <!--<![endif]-->
+  <!-- BEGIN HEAD -->
+  <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+  <!--[if lt IE 9]>
+  <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1"/>
+  <meta http-equiv="X-UA-Compatible" content="IE=9"/>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet" href="scss/common.css">
+  <link rel="stylesheet" href="scss/sc.css">
+  <script src="js/jquery.min.js"></script>
+
+		<!--<script src="js/simple1.js"></script>
+			<script src="js/simple2.js"></script>
+				<script src="js/simple3.js"></script>-->
+  <script src="js/common.js"></script>
+    <script src="js/echarts.js"></script>
+ 	<script src="js/sc.js"></script>
+ 	<style>
+ 		#lct{
+ 			margin: 0;
+ 			padding: 0;
+ 			border: 0;
+ 			width: 100%;
+ 			height: 100%;
+ 			padding-left: 20px ;
+ 		}
+ 		#sp1,#sp2,#sp3,#sp4{
+ 			width: 50%;
+ 			height: 50%;
+ 			float: left;
+ 		}
+ 	
+ 		#sp1,#sp3{
+ 			padding-left: 20px;
+ 		}
+ 		#sp2,#sp4{
+ 			padding-right: 20px;
+ 		}
+ 		  body{
+        	height: 100vh;
+        	overflow: hidden;
+        }
+        #qp{
+        
+        	width: 21px;
+        	height: 21px;
+        	position: absolute;
+        	right: 0;
+        	top:13px;
+        	padding: 0;
+        }
+        #close{
+        		width: 21px;
+        	height: 21px;
+        	position: absolute;
+        	display: none;
+        	right: 18px;
+        	top:-21px;
+        	padding: 0;
+        }
+         #sx{
+        		width: 21px;
+        	height: 21px;
+        	position: absolute;
+        	display: none;
+        	right: 45px;
+        	top:-21px;
+        	padding: 0;
+        }
+        #bigL{
+        	position: absolute;
+        	top: 0;
+        	display: none;
+        	z-index: 99;
+        	    height: 100%;
+        	    padding:0 20px;
+        	    width: 100%;
+        }
+        #bigL iframe{
+        	  height: 100%;
+
+        	    width: 100%;
+        }
+        .sp{
+        	margin: 0;
+        	padding: 0;
+        	height: 100%;
+        	width: 100%;
+        	border: 0;
+        }
+        #chart1,#chart_{
+
+        	width: calc(100% - 20px);
+    float: right;
+    border: 2px solid #40667B;
+
+        }
+        #chart1{
+        	height: 60%;
+        }
+        #chart_{
+        	height: 37%!important;
+        	position: relative;
+        	top: 2%;
+        }
+ 	</style>
+</head>
+<body onload="getLangDate()" >
+<header>
+  <img src="img/logo.png" alt="">
+  <div id="time">
+    <p></p>
+    <p></p>
+  </div>
+  <ul class="toogle">
+    <li ><a href="index.html">概况</a></li>
+    <li class="act-toogle"><a href="sc.html">水厂</a></li>
+    <li><a href="SCADA.html">SCADA</a></li>
+    <!--<li><a href="#">GPS</a></li>-->
+  </ul>
+	
+</header>
+<div class="left">
+  <div class="left-top-box">
+    <div class="box-tit" style="position: relative;">
+      <h5>工艺流程图</h5>
+      <img src="img/qp.png" id='qp' alt="" />
+    </div>
+    <div class="box-cont">
+      <iframe src='http://124.133.250.98:8006/htmonitor.jsp?fileName=3fc1dd45-29bf-45cc-9e7c-b7bf05526ac2.txt' id='lct'></iframe>
+    </div>
+  </div>
+  <div class="left-bom-box">
+    <div class="box-tit" >
+      <h5>设备台账</h5>
+     
+    </div>
+    <div class="box-cont">
+    	
+    	<div id="chart1"></div>
+    	<div id="chart_"></div>
+    </div>
+  </div>
+</div>
+<div class="center">
+  <div class="box-tit">
+    <h5>监控视频</h5>
+  </div>
+  <div class="box-cont" style="position: relative;    height: calc(100% - 46px);">
+  	<img src="img/close.png" id='close' alt="" />
+  	<img src="img/sx.png" id='sx' alt="" />
+  	<div id="bigL"><iframe src='http://124.133.250.98:8006/htmonitor.jsp?fileName=3fc1dd45-29bf-45cc-9e7c-b7bf05526ac2.txt' ></iframe></div>
+
+  	<div id="sp1">
+  		<iframe src="sp1.html" id='hk' class='sp'  onload="iframeLoaded(4);"></iframe>
+
+  	</div>
+  <div id="sp2">
+  		<iframe id='v1' src="" class='sp'></iframe>
+  	</div>
+  	<div id="sp3">
+  		<iframe id='v2' src="" class='sp'></iframe>
+  	</div>
+  	<div id="sp4">
+  		<iframe id='v3' src=""  class='sp'></iframe>
+  	</div>
+  </div>
+</div>
+<div class="right">
+  <div class="right-top-box">
+    <div class="box-tit">
+      <h5>出厂余氯</h5>
+    </div>
+    <div class="box-cont">
+    	<div id="chart2"></div>
+    </div>
+  </div>
+  <div class="right-center-box">
+    <div class="box-tit">
+      <h5>出厂浊度</h5>
+    </div>
+    <div class="box-cont">
+    	<div id="chart3"></div>
+    </div>
+  </div>
+  <div class="right-bom-box">
+    <div class="box-tit">
+      <h5>出厂PH</h5>
+    </div>
+    <div class="box-cont">
+    	<div id="chart4"></div>
+    </div>
+  </div>
+</div>
+</body>
+  	<script src="js/webVideoCtrl.js"></script>
+<script src="js/demo-iframe.js"></script>
+<!--<script src="js/demo-iframe1.js"></script>
+<script src="js/demo-iframe2.js"></script>
+<script src="js/demo-iframe3.js"></script>-->
+</html>

@@ -1,0 +1,28 @@
+.left {
+  width: 20%;
+  float: left;
+  height: calc(100vh - 85px);
+  background: #124F8E; }
+  .left .left-top-box {
+    height: 30%; }
+    .left .left-top-box img {
+      width: 86%;
+      padding: 5% 7%; }
+  .left .left-bom-box {
+    height: 70%; }
+
+.center {
+  width: 60%;
+  float: left;
+  height: calc(100vh - 85px);
+  background: #124F8E; }
+
+.right {
+  width: 20%;
+  float: left;
+  height: calc(100vh - 85px);
+  background: #124F8E; }
+  .right .right-center-box, .right .right-top-box, .right .left-bom-box {
+    height: 33.3333%; }
+
+/*# sourceMappingURL=sc.css.map */

@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<title>SCADA</title>
+		<!--[if IE 8]>
+  <html lang="en" class="ie8 no-js"> <![endif]-->
+		<!--[if IE 9]>
+  <html lang="en" class="ie9 no-js"> <![endif]-->
+		<!--[if !IE]><!-->
+
+		<!--<![endif]-->
+		<!-- BEGIN HEAD -->
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+  <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+  <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+  <![endif]-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="scss/common.css">
+
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/bootstrap-select.css">
+		<link rel="stylesheet" href="scss/scada.css">
+		<link rel="stylesheet" href="skin/jedate.css">
+		<link rel="stylesheet" href="arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/esri/css/esri.css">
+		<link rel="stylesheet" href="arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/dijit/themes/claro/claro.css">
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.jedate.js"></script>
+		<script src="js/time.js"></script>
+		<script src="js/bootstrap.js"></script>
+		<script src="js/bootstrap-select.js"></script>
+		<script src="js/i18n/defaults-zh_CN.js"></script>
+		<script src="js/common.js"></script>
+		<!--引入百度地图的jssdk，这里需要使用你在百度地图开发者平台申请的 ak-->
+		<script src="http://api.map.baidu.com/api?v=2.0&ak=TaIo2F3hwGsBXvuYsNzQ8r5jYZYgcfGm"></script>
+		<!-- 引入 ECharts -->
+		<script src="js/echarts.js"></script>
+		<script>
+			var parh_location = location.pathname.replace(/\/[^/]+$/, '');
+			var dojoConfig = {
+				baseUrl: "arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/dojo",
+				parseOnLoad: false,
+				async: true,
+				packages: [{
+					name: 'js',
+					location: parh_location + '/js'
+				}, {
+					name: 'config',
+					location: parh_location + '/config'
+				}, {
+					name: 'gislib',
+					location: parh_location + '/gislib'
+				}]
+			}
+		</script>
+		<script src="arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/init.js"></script>
+		<script src="js/scada.js"></script>
+		<style>
+			body {
+				height: 100vh;
+				overflow: hidden;
+			}
+			.filter-option{
+				color:#fff				
+			}
+			.cont .right{
+				position: relative;
+				float:right;
+				    height: calc(100% - 18px);
+			}
+			.cont .center .center-top-box{
+				    height: calc(30% - 10px);
+    margin-top: 10px;
+			}
+			.cont .center .center-box{
+				    height: calc(35% - 10px);
+    margin-top: 10px;
+			}
+			.cont .center .center-bom-box{
+				    height: calc(35% - 10px);
+    margin-top: 10px;
+			}
+			.center .center-top-box .box-tit{
+				    background: #0074CD;
+			}
+			.center .center-top-box .box-cont{
+				       border: 2px solid #0074CD;
+    border-top: 0;
+			}
+			.center-box .box-tit{
+				    background: #40BF4E;
+			}
+			.cont .center{
+				    width: calc(55% - 17px);
+				        height: calc(100% - 18px);
+			}
+			.center h5{
+				color:#fff;
+				height: 35px;
+			}
+			.center-bom-box .box-tit{
+				background: #F79D30;				
+			}
+			.cont .right::after{
+				content: '';
+				display: block;
+				background: #4E6678;
+				width: 1px ;
+				height: 98%;
+				top: 1%;
+				    left: 0%;
+				position: absolute;
+			}
+			.datainp{
+				padding-top: 0;
+			}
+		</style>
+	</head>
+
+	<body onload="getLangDate()">
+		<header>
+			<img src="img/logo.png" alt="">
+			<div id="time">
+				<p></p>
+				<p></p>
+			</div>
+			<ul class="toogle">
+				<li>
+					<a href="index.html">概况</a>
+				</li>
+				<li>
+					<a href="sc.html">水厂</a>
+				</li>
+				<li class="act-toogle">
+					<a href="SCADA.html">SCADA</a>
+				</li>
+				<!--<li><a href="#">GPS</a></li>-->
+			</ul>
+
+		</header>
+		<div class="select-box">
+			<div class="select">
+				<span class="name">选择站点：</span>
+				<select id="lunch" class="selectpicker" data-live-search="true" data-width="250px" title="选择站点">
+					<optgroup label="压力监测点">
+						<option type="a" localtion="116.75614735,36.55834093" value="85">大学路-银丰公馆</option>
+						<option type="a" localtion="116.76524408,36.55626208" value="86">骏驰汽修</option>
+						<option type="a" localtion="116.77432641,36.55724633" value="87">大学路-恒大绿洲</option>
+						<option type="a" localtion="116.76324873,36.54799373" value="88">汇富小区北</option>
+						<option type="a" localtion="116.75427921,36.56890065" value="89">三里庄大桥北</option>
+						<option type="a" localtion="116.75614326,36.56222528" value="90">莲台山路</option>
+						<option type="a" localtion="116.74824684,36.55926412" value="91">富群便利</option>
+						<option type="a" localtion="116.74619569,36.55335852" value="92">长清区政府</option>
+						<option type="a" localtion="116.76996200,36.56743949" value="93">凤凰路桥北</option>
+						<option type="a" localtion="116.75626664,36.57123214" value="94">经十西-重汽路东南</option>
+						<option type="a" localtion="116.73874109,36.55692523" value="95">马山路-老周水族</option>
+						<option type="a" localtion="116.76016657,36.57906955" value="96">沃德大道</option>
+						<option type="a" localtion="116.73523276,36.5503109" value="97"> V6折扣仓</option>
+						<option type="a" localtion="116.73142402,36.55632978" value="98">清河街</option>
+						<option type="a" localtion="116.7515614,36.54557348" value="99">长清第一中学</option>
+						<option type="a" localtion="116.74135356,36.55374413" value="100">长清区财政局</option>
+					</optgroup>
+					<optgroup label="流量监测点">
+						<option type="b" localtion="116.75524527,36.55926458" lj="102" value="101">莲台山路</option>
+						<option type="b" localtion="116.75042588,36.55888246" lj="104" value="103">鑫悦宾馆</option>
+						<option type="b" localtion="116.75029307,36.55948595" lj="107" value="106">光华防水</option>
+						<option type="b" localtion="116.76624446,36.55772588" lj="110" value="109">时代餐厅（恒大店</option>
+						<option type="b" localtion="116.76515548,36.55526226" lj="122" value="121">骏驰汽修</option>
+						<option type="b" localtion="116.79916644,36.51297553" lj="113" value="112">海棠路</option>
+						<option type="b" localtion="116.76416997,36.54645691" lj="116" value="115">汇富小区</option>
+						<option type="b" localtion="116.74709349,36.55317804" lj="119" value="118">长清区政府</option>
+						<option type="b" localtion="116.75961039,36.57886" lj="125" value="124">沃德大道</option>
+						<option type="b" localtion="116.77102692,36.5690551" lj="129" value="127">凤凰路桥北</option>
+					</optgroup>
+					<optgroup label="水质监测点">
+						<option type="c" localtion="116.81028097,36.59466928" zd="130" ph="132" value="131">平安街道</option>
+						<option type="c" localtion="116.79018405,36.49634842" zd="133" ph="135" value="134">济南幼师</option>
+						<option type="c" localtion="116.73336525,36.539782," zd="136" ph="138" value="137">原山官邸</option>
+					</optgroup>
+				</select>
+				<span class="name" style="margin-left: 2%">开始时间</span> <input class="datainp wicon" id="inpstart" type="text" placeholder="开始日期">
+				<span class="name" style="margin-left: 2%">结束时间</span> <input class="datainp wicon" id="inpend" type="text" placeholder="结束日期">
+
+				<button type="button" class="btn btn-info" style="
+    position: relative;
+    top: -1px;
+    height: 34px;
+  background: #fff;
+    margin-left: 2%;
+    color: #0074D6;    border: 0; " id="searches">开始查询
+    </button>
+
+			</div>
+		</div>
+		<div class="cont">
+			<div class="left">
+				<div class="left-top-box">
+					<div class="box-tit">
+						<h5>监测点地图浏览</h5>
+					</div>
+					<div class="box-cont">
+						<div id="bdmap"></div>
+					</div>
+				</div>
+				<div class="left-bom-box">
+					<div class="box-tit">
+						<h5>监测点资源浏览</h5>
+					</div>
+					<div class="box-cont">
+						<img src="img/85.png" alt="">
+					</div>
+				</div>
+			</div>
+			<div class="center">
+				<div class="center-top-box">
+					<div class="box-tit">
+						<h5>监测点压力曲线</h5>
+					</div>
+					<div class="box-cont">
+						<div id="chart1"></div>
+					</div>
+				</div>
+				<div class="center-box">
+					<div class="center-left-box">
+						<div class="box-tit">
+							<h5>监测点瞬时流量曲线</h5>
+						</div>
+						<div class="box-cont" style="    border: 2px solid #40BF4E;
+    border-top: 0;
+    border-right: 0;">
+							<div id="chart2"></div>
+						</div>
+					</div>
+					<div class="center-right-box">
+						<div class="box-tit" >
+							<h5>监测点累计流量曲线</h5>
+						</div>
+						<div class="box-cont" style="    border: 2px solid #40BF4E;
+    border-top: 0;
+    border-left: 0;">
+							<div id="chart3"></div>
+						</div>
+					</div>
+				</div>
+				<div class="center-bom-box">
+					<div class="center-left-box">
+						<div class="box-tit">
+							<h5>监测点水质-浊度曲线</h5>
+						</div>
+						<div class="box-cont" style="border:2px solid #F79D30;border-top:0;border-right: 0;">
+							<div id="chart4"></div>
+						</div>
+					</div>
+					<div class="center-center-box">
+						<div class="box-tit">
+							<h5>监测点水质-余氯曲线</h5>
+						</div>
+						<div class="box-cont" style="border:2px solid #F79D30;border-top:0;border-right: 0;border-left: 0;"> 
+							<div id="chart5"></div>
+						</div>
+					</div>
+					<div class="center-right-box">
+						<div class="box-tit">
+							<h5>监测点水质-PH曲线</h5>
+						</div>
+						<div class="box-cont" style="border:2px solid #F79D30;border-top:0;border-left: 0;">
+							<div id="chart6"></div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="right">
+				<div class="right-top-box">
+					<div class="box-tit">
+						<h5>管网平均压力</h5>
+					</div>
+					<div class="box-cont">
+						<div id="chart7"></div>
+					</div>
+				</div>
+				<div class="right-center-box">
+					<div class="box-tit">
+						<h5>管网平均浊度</h5>
+					</div>
+					<div class="box-cont">
+						<div id="chart8"></div>
+					</div>
+				</div>
+				<div class="right-bom-box">
+					<div class="box-tit">
+						<h5>管网总流量</h5>
+					</div>
+					<div class="box-cont">
+						<div id="chart9"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		</div>
+	</body>
+	<script>
+	</script>
+
+</html>

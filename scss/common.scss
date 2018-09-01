@@ -1,0 +1,116 @@
+ul,ol,li{
+  list-style: none;
+}
+body{
+  color: #fff;
+  background-color: #124F8E!important;
+}
+header{
+  background: rgba(57,131,206,.8);
+  width: 100%;
+  height: 85px;
+  img{
+    margin-top: 11px;
+    margin-left: 25px;
+  }
+  .toogle{
+    padding: 0;
+    margin: 0;
+    float: right;
+    width: 405px;
+    height: 85px;
+    line-height: 85px;
+    margin-right: 5%;
+    li{
+      float: left;
+      width: 121px;
+      background: url(../img/toogle.png) no-repeat 0px;
+      text-align: center;
+      line-height: 85px;
+      height: 85px;
+      margin: 0 7px;
+      cursor: pointer;
+      a{
+        color: #fff;
+        height: 42px;
+        line-height: 42px;
+        width: 121px;
+        display: inline-block;
+       &:hover{
+         text-decoration: none          ;
+       }
+      }
+      &:hover{
+        background: url(../img/act-toogle.png) no-repeat 0px!important;
+      }
+    }
+    .act-toogle{
+      background: url(../img/act-toogle.png) no-repeat 0px!important;
+    }
+  }
+  #time{
+    float: right;
+    width: 197px;
+    height: 85px;
+    text-align: center;
+    color: #fff;
+    position: relative;
+    p{
+      line-height: 50.5px;
+      margin: 0;
+      position: relative;
+      top: 5px;
+
+      &:last-child{
+        font-size: 32px;
+        line-height: 0;
+      }
+    }
+    &:after{
+      content: '';
+      display: block;
+      width: 1px;
+      height: 50px;
+      background: #fff;
+      position: absolute;
+      top: 50%;
+      margin-top: -25px;
+    }
+  }
+}
+.anchorBL{
+  display: none!important;
+}
+.box-tit{
+  h5{
+    margin: 0;
+    position: relative;
+    padding-left: 35px;
+    color: #DBC35D;
+    height: 40px;
+    line-height: 40px;
+    font-size: 16px;
+    &:after{
+      content: '';
+      display: block;
+      width: 3px;
+      height: 18px;
+      background: #38ADE2;
+      position: absolute;
+      left: 20px;
+      top: 10px;
+
+    }
+  }
+}
+.box-cont {
+  height: calc(100% - 40px);
+
+}
+@media (max-width: 1500px) {
+  header img{
+    width: 500px;
+    margin-top: 22px;
+
+  }
+}

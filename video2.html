@@ -1,0 +1,95 @@
+<head>
+<style>
+BODY {
+	padding:0;
+	margin:0;
+}
+</style>
+<script>
+
+var obj;
+var gWndId;
+// 获取传过来的参数
+function getArguments() {
+	var args=new Object();   
+	var query=location.search.substring(1);//获取查询串   
+	var pairs=query.split("&");//在逗号处断开   
+	for(var   i=0;i<pairs.length;i++)   
+	{   
+		var pos=pairs[i].indexOf('=');//查找name=value   
+			if(pos==-1)   continue;//如果没有找到就跳过   
+			var argname=pairs[i].substring(0,pos);//提取name   
+			var value=pairs[i].substring(pos+1);//提取value   
+			args[argname]=unescape(value);//存为属性   
+	}
+	return args;
+}
+
+
+function init(){
+    
+	//document.getElementById("channel").style.borderRadius="5px";
+	//document.getElementById("channel").style.border="1px solid RGB(220,220,220)";
+	
+	obj = document.getElementById("DPSDK_OCX");
+    gWndId = obj.DPSDK_CreateSmartWnd(0, 0, 100, 100);
+    obj.DPSDK_SetWndCount(gWndId, 1); 
+	obj.DPSDK_SetSelWnd(gWndId, 0);
+	
+	arguments = getArguments();
+
+	
+	obj.DPSDK_Login(arguments.ip, parseInt(arguments.port), arguments.user, arguments.password);
+	
+	var _arrayChanels = arguments.chanel.split(',');
+	play(_arrayChanels[0]);
+	var _arrayChanelNames = arguments.channelNames.split(',');
+	for(var _indexChanel=0; _indexChanel<_arrayChanels.length; ++_indexChanel) {
+		
+		var selectObj=document.getElementById("channels");   
+		selectObj.options[selectObj.length] = new Option(_arrayChanelNames[_indexChanel], _arrayChanels[_indexChanel]);  
+	}
+	
+	
+
+}
+
+function changeWinCount(count) 
+{
+	obj.DPSDK_SetWndCount(gWndId, count); 
+	obj.DPSDK_SetSelWnd(gWndId, 0); 
+}
+
+
+
+function play(channel){
+    var nWndNo = obj.DPSDK_GetSelWnd(gWndId);
+	obj.DPSDK_StartRealplayByWndNo(gWndId, nWndNo,channel,2,1,1)
+}
+</script>
+</head>
+<body onload="init()">
+    <div id="channel" style="height:32px;background: rgb(236, 240, 241);position:relative; display: none;">
+	   <div style="position:absolute;left:2;bottom:6;font-size:14">
+		   <span>窗口数量:</span>
+		   <select onChange="changeWinCount(this.value)"  style="background:rgb(181, 210, 240);font-size:13;">
+			  <option value ="1">1×1</option>
+			  <option selected="selected" value ="4">2×2</option>
+			  <option value="9">3×3</option>
+			  <option value="16">4×4</option>
+			  <option value="25">5×5</option>
+		   </select>
+		</div>
+	   
+	   <div style="position:absolute;right:3;bottom:6;font-size:14">
+		   <span>通道列表:</span>
+		   <select onchange="play(this.value)" style="background:rgb(181, 210, 240);font-size:13;" id="channels">
+			</select>
+		</div>
+	</div>
+	<div id="obj" style="width:100%;height:100%;display:block;margin:auto;">
+		<object id="DPSDK_OCX" classid="CLSID:D3E383B6-765D-448D-9476-DFD8B499926D" style="width: 100%; height: 100%" codebase="DpsdkOcx.cab#version=1.0.0.0"></object>
+	</div>
+	
+
+		

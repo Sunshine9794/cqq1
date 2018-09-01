@@ -1,0 +1,98 @@
+ul, ol, li {
+  list-style: none; }
+
+body {
+  color: #fff;
+  background-color: #124F8E !important; }
+
+header {
+  background: rgba(57, 131, 206, 0.8);
+  width: 100%;
+  height: 85px; }
+  header img {
+    margin-top: 11px;
+    margin-left: 25px; }
+  header .toogle {
+    padding: 0;
+    margin: 0;
+    float: right;
+    width: 405px;
+    height: 85px;
+    line-height: 85px;
+    margin-right: 5%; }
+    header .toogle li {
+      float: left;
+      width: 121px;
+      background: url(../img/toogle.png) no-repeat 0px;
+      text-align: center;
+      line-height: 85px;
+      height: 85px;
+      margin: 0 7px;
+      cursor: pointer; }
+      header .toogle li a {
+        color: #fff;
+        height: 42px;
+        line-height: 42px;
+        width: 121px;
+        display: inline-block; }
+        header .toogle li a:hover {
+          text-decoration: none; }
+      header .toogle li:hover {
+        background: url(../img/act-toogle.png) no-repeat 0px !important; }
+    header .toogle .act-toogle {
+      background: url(../img/act-toogle.png) no-repeat 0px !important; }
+  header #time {
+    float: right;
+    width: 197px;
+    height: 85px;
+    text-align: center;
+    color: #fff;
+    position: relative; }
+    header #time p {
+      line-height: 50.5px;
+      margin: 0;
+      position: relative;
+      top: 5px; }
+      header #time p:last-child {
+        font-size: 32px;
+        line-height: 0; }
+    header #time:after {
+      content: '';
+      display: block;
+      width: 1px;
+      height: 50px;
+      background: #fff;
+      position: absolute;
+      top: 50%;
+      margin-top: -25px; }
+
+.anchorBL {
+  display: none !important; }
+
+.box-tit h5 {
+  margin: 0;
+  position: relative;
+  padding-left: 35px;
+  color: #DBC35D;
+  height: 40px;
+  line-height: 40px;
+  font-size: 16px; }
+  .box-tit h5:after {
+    content: '';
+    display: block;
+    width: 3px;
+    height: 18px;
+    background: #38ADE2;
+    position: absolute;
+    left: 20px;
+    top: 10px; }
+
+.box-cont {
+  height: calc(100% - 40px); }
+
+@media (max-width: 1500px) {
+  header img {
+    width: 500px;
+    margin-top: 22px; } }
+
+/*# sourceMappingURL=common.css.map */

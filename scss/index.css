@@ -1,0 +1,172 @@
+body {
+  background: #124F8E; }
+
+.left {
+  width: 20%;
+  float: left;
+  height: calc(100vh - 93px);
+  background: #418fdf; }
+  .left .left-top-box {
+    height: 25%; }
+    .left .left-top-box .box-cont .weather {
+      position: relative;
+      height: 65%;
+      text-align: center; }
+      .left .left-top-box .box-cont .weather img {
+        display: inline-block;
+        width: 80px;
+        height: 80px; }
+      .left .left-top-box .box-cont .weather .wd {
+        display: inline-block;
+        vertical-align: middle; }
+        .left .left-top-box .box-cont .weather .wd p {
+          font-size: 1.4vw;
+          margin: 0; }
+    .left .left-top-box p {
+      font-size: 18px;
+      text-align: center;
+      margin-bottom: 2%;
+      height: 33.3333%; }
+
+.now {
+  height: 35%;
+  width: 80%;
+  margin: 0 auto; }
+  .now .now-cont {
+    width: 50%;
+    float: left;
+    text-align: center; }
+    .now .now-cont span {
+      display: block;
+      height: 25px;
+      line-height: 25px; }
+  .now .now-cont:nth-of-type(1) {
+    border-bottom: 1px solid #4E6678;
+    border-right: 1px solid #4E6678; }
+  .now .now-cont:nth-of-type(2) {
+    border-bottom: 1px solid #4E6678; }
+  .now .now-cont:nth-of-type(3) {
+    border-right: 1px solid #4E6678; }
+
+.left-center-box {
+  height: 31.5%; }
+  .left-center-box .box-cont ul {
+    padding: 0;
+    margin: 0;
+    height: 100%; }
+    .left-center-box .box-cont ul li {
+      height: calc(25% - 8px);
+      font-size: 1vw;
+      text-align: center;
+      width: 86%;
+      margin: 8px 7%;
+      display: flex;
+      justify-content: center;
+      align-items: center; }
+      .left-center-box .box-cont ul li span {
+        display: inline-block; }
+        .left-center-box .box-cont ul li span font {
+          font-size: 14px; }
+      .left-center-box .box-cont ul li span:nth-of-type(1) {
+        text-align: right;
+        width: 60%; }
+      .left-center-box .box-cont ul li span:nth-of-type(2) {
+        text-align: left;
+        color: #DBC35D;
+        width: 40%; }
+
+.left-bom-box {
+  height: 43.5%; }
+  .left-bom-box .box-cont img {
+    width: 60%;
+    margin: 2% 20%;
+    margin-bottom: 0;
+    height: 56%; }
+  .left-bom-box .box-cont .jj {
+    padding: 5% 6%;
+    height: 42%;
+    width: 86%;
+    margin: 0 7%;
+    overflow: hidden;
+    background: #124064; }
+    .left-bom-box .box-cont .jj p {
+      text-indent: 2em;
+      margin: 0;
+      line-height: 25px; }
+
+.center {
+  width: 60%;
+  float: left;
+  height: calc(100vh - 85px); }
+  .center .layer-control {
+    height: 135px;
+    background: #124F8E; }
+    .center .layer-control .box-cont {
+      padding: 0 20px; }
+      .center .layer-control .box-cont .contorl {
+        height: 140px;
+        width: 100%;
+        position: relative;
+        top: 10px;
+        background: #124064;
+        position: relative; }
+        .center .layer-control .box-cont .contorl .prev, .center .layer-control .box-cont .contorl .next {
+          position: absolute;
+          top: 50%;
+          transform: translateY(-50%);
+          cursor: pointer; }
+          .center .layer-control .box-cont .contorl .prev img, .center .layer-control .box-cont .contorl .next img {
+            height: 38px;
+            width: 38px; }
+        .center .layer-control .box-cont .contorl .prev {
+          left: 10px; }
+        .center .layer-control .box-cont .contorl .next {
+          right: 10px; }
+        .center .layer-control .box-cont .contorl .slider {
+          width: calc(100% - 80px);
+          margin: 0 auto;
+          overflow: hidden;
+          position: relative; }
+          .center .layer-control .box-cont .contorl .slider ul {
+            margin: 0;
+            padding: 0; }
+            .center .layer-control .box-cont .contorl .slider ul li {
+              float: left;
+              width: calc(11.11111% - 12px);
+              text-align: center;
+              height: 40px;
+              margin: 0 6px;
+              margin-top: 20px;
+              line-height: 40px;
+              background: #093B60; }
+              .center .layer-control .box-cont .contorl .slider ul li input[type='checkbox'] {
+                margin: 0;
+                vertical-align: baseline;
+                position: relative;
+                top: 3px;
+                width: 15px;
+                height: 15px; }
+
+.layer-control .box-tit {
+  position: relative; }
+
+.checkContorl {
+  position: absolute;
+  right: 21px;
+  top: 12px; }
+  .checkContorl input[type='checkbox'] {
+    position: relative;
+    top: 2px; }
+
+#map {
+  height: calc(100% - 199px); }
+
+.right {
+  width: 20%;
+  float: right;
+  height: calc(100vh - 85px);
+  background: #418fdf; }
+  .right .right-top-box, .right .right-center-box, .right .right-bom-box {
+    height: 33.33333%; }
+
+/*# sourceMappingURL=index.css.map */

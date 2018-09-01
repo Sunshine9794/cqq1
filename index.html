@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>概况</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no">
+		<!--[if IE 8]>
+    <html lang="en" class="ie8 no-js"> <![endif]-->
+		<!--[if IE 9]>
+    <html lang="en" class="ie9 no-js"> <![endif]-->
+		<!--[if !IE]><!-->
+
+		<!--<![endif]-->
+		<!-- BEGIN HEAD -->
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+    <script src="http://apps.bdimg.com/libs/html5shiv/3.7/html5shiv.min.js"></script>
+    <script src="http://apps.bdimg.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,Chrome=1" />
+		<meta http-equiv="X-UA-Compatible" content="IE=9" />
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="scss/common.css">
+		<link rel="stylesheet" href="scss/index.css">
+		<link rel="stylesheet" href="arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/esri/css/esri.css">
+		<link rel="stylesheet" href="arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/dijit/themes/claro/claro.css">
+		<link rel="stylesheet" href="css/jquery.mCustomScrollbar.css" />
+		<style>
+			.titlePane {
+				background-color: #4fb7de !important;
+				font-size: 15px !important;
+				height: 35px;
+				line-height: 35px!important;
+			}
+			
+			.titleButton {
+				top: 10px !important;
+			}
+			
+			.maximize {
+				top: 13px !important;
+			}
+			
+			.restore {
+				top: 13px !important;
+			}
+			
+			.con {
+				max-width: 500px;
+			}
+			
+			.con div {
+				margin-left: 10px;
+				font-size: 14px;
+				font-weight: 500;
+				color: #6f6f6f;
+			}
+			
+			.con b {
+				margin-left: 10px;
+				font-size: 14px;
+				font-weight: 500;
+				color: #4fb7de;
+				text-indent: 25px
+			}
+			
+			/*#map {
+				height: calc(100% - 210px);
+				position: relative;
+			}
+			*/
+			#legendDiv {
+				position: absolute !important;
+				/*background-color: #ffffff;*/
+				color: #000000;
+				right: 0;
+				bottom: 0;
+				z-index: 999;
+			}
+			
+			.right {
+				float: left;
+			}
+			#chart1,#chart2,#chart3{
+				display: none;
+			}
+		
+			#toogle {
+				margin: 0; 
+				padding: 0;
+				position: absolute;
+				right: 0;
+
+				    top: 13px;
+				    width: 77px;
+				
+			}
+			#toogle li {
+				float: left;
+			}
+			#toogle a{
+				color: #fff;
+				cursor: pointer;
+				margin: 0 5px;
+			}
+			body {
+				height: 100vh;
+				overflow: hidden;
+			}
+			.act-tog{
+				color:#DBC35D!important;
+				text-decoration: underline;
+				}			}
+			.left-bom-box .box-cont .jj {
+				padding: 2% 6%;
+			}
+		</style>
+		<script src="js/jquery.min.js"></script>
+		<script src="js/jquery.mCustomScrollbar.concat.min.js"></script>
+		<script src="js/common.js"></script>
+		<script src="js/echarts.js"></script>
+		<script src="js/index.js"></script>
+		<script>
+			var parh_location = location.pathname.replace(/\/[^/]+$/, '');
+			var dojoConfig = {
+				baseUrl: "arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/dojo",
+				parseOnLoad: false,
+				async: true,
+				packages: [{
+					name: 'js',
+					location: parh_location + '/js'
+				}, {
+					name: 'config',
+					location: parh_location + '/config'
+				}, {
+					name: 'gislib',
+					location: parh_location + '/gislib'
+				}]
+			}
+		</script>
+		<script src="arcgis_js_v324_api/arcgis_js_api/library/3.24/3.24/init.js"></script>
+	</head>
+
+	<body onload="getLangDate()">
+		<header>
+			<img src="img/logo.png" alt="">
+			<div id="time">
+				<p></p>
+				<p></p>
+			</div>
+			<ul class="toogle">
+				<li class="act-toogle">
+					<a href="index.html">概况</a>
+				</li>
+				<li>
+					<a href="sc.html">水厂</a>
+				</li>
+				<li>
+					<a href="SCADA.html">SCADA</a>
+				</li>
+				<!--<li><a href="#">GPS</a></li>-->
+			</ul>
+
+		</header>
+		<div class="left">
+			<div class="left-top-box ">
+				<div class="box-tit">
+					<h5>天气信息</h5>
+				</div>
+				<div class="box-cont">
+					<div class="weather">
+						<img src="cond_icon_heweather/100.png" alt="">
+						<div class="wd">
+							<p>济南市长清区</p>
+							<p></p>
+						</div>
+					</div>
+					<div class="now">
+						 <div class="now-cont"><span>出厂水质</span>
+                </div>
+                <div class="now-cont">
+            <span></span>
+
+                </div>
+                <div class="now-cont">
+                    <span></span>
+                </div>
+                <div class="now-cont"><span></span></div>
+					</div>
+				</div>
+			</div>
+			<div class="left-center-box">
+				<div class="box-tit">
+					<h5>基本信息</h5>
+				</div>
+				<div class="box-cont">
+					<ul>
+						<li style=" background: #4FB7DE;"><span>当日供水量：</span><span class='gsl'></span></li>
+						<li style=" background: #48B892;"><span>管线总长度：</span><span>103<font>KM</font></span></li>
+						<li style=" background: #1A70A3;"><span>服务人口：</span><span>30<font>万</font></span></li>
+						<li style=" background: #116CBB;"><span>在线监测点数量：</span><span>28<font>个</font></span></li>
+					</ul>
+				</div>
+			</div>
+			<div class="left-bom-box">
+				<div class="box-tit">
+					<h5>中心简介</h5>
+				</div>
+				<div class="box-cont">
+					<img src="img/imgs.jpg" alt="">
+					<div class="jj">
+						<p>1997年9月27日，公司正式更名为自来水服务中心。
+     城市自来水区域覆盖面积100平方公里，服务人口30万人。设计日供水能力5万吨，承担着长清主城区、经开区、农高区、大学科技园区、高新区五大片区城市供、排水任务。下辖济南供水工程安装有限公司、济南市西区污水处理厂、济南水长清饮用水有限公司、济南水长清农村公共供水运营有限公司四个企业，现共有职工266人。</p>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="center">
+			<div id="map">
+				<!--<div id="legendDiv"></div>-->
+			</div>
+			<div class="layer-control">
+				<div class="box-tit">
+					<h5>图层控制</h5>
+					        <div class="checkContorl">
+                <input type="checkbox" id="allCheck"> <span>全选</span>
+
+            </div>
+				</div>
+				<div class="box-cont">
+					<div class="contorl">
+
+
+						<div class="slider">
+							<ul id="layerControl" class="cor-cont clearfix">
+								<li>
+									<input type="checkbox" name="WaterPipe" checked="checked">
+									<span>水管</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution0" checked="checked">
+									<span>阀门</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution1">
+									<span>阀门井</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution2">
+									<span>水表</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution3">
+									<span>水表井</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution4" v>
+									<span>消防栓</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution5">
+									<span>消防井</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution6">
+									<span>弯头</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution7">
+									<span>四通</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution8">
+									<span>三通</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution9">
+									<span>管堵</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution10">
+									<span>非普查区</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution11">
+									<span>变径</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution12">
+									<span>变材</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution13">
+									<span>桩号井</span>
+								</li>
+								<li>
+									<input type="checkbox" name="WaterDistribution14">
+									<span>用户</span>
+								</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="right">
+			<div class="right-top-box">
+				<div class="box-tit" style="position: relative;"> 
+					<h5>出厂水压力</h5>
+					<ul id='toogle'>
+						<li class='toogle' ><a class='act-tog' href="##">实时</a>
+					</li>
+						<li class='toogle'><a href="##">今日</a></li>
+					</ul>
+				</div>
+				<div class="box-cont">
+					<div id="chart1"></div>
+					<div id="chart1_"></div>
+				</div>
+			</div>
+			<div class="right-center-box">
+				<div class="box-tit">
+					<h5>出厂瞬时流量</h5>
+				</div>
+				<div class="box-cont">
+					<div id="chart2"></div>
+					<div id="chart2_"></div>
+				</div>
+			</div>
+			<div class="right-bom-box">
+				<div class="box-tit">
+					<h5>出厂总流量</h5>
+				</div>
+				<div class="box-cont">
+					<div id="chart3"></div>
+					<div id="chart3_"></div>
+				</div>
+			</div>
+		</div>
+
+	</body>
+
+</html>

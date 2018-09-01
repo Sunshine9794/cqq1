@@ -1,0 +1,32 @@
+.left{
+  width: 20%;;
+  float: left;
+  height: calc(100vh - 85px);
+  background: #124F8E;
+  .left-top-box{
+    height: 30%;
+    img{
+      width: 86%;
+      padding: 5% 7%;
+
+    }
+  }
+  .left-bom-box{
+    height: 70%;
+  }
+}
+.center{
+  width: 60%;;
+  float: left;
+  height: calc(100vh - 85px);
+  background: #124F8E;
+}
+.right{
+  width: 20%;
+  float: left;
+  height: calc(100vh - 85px);
+  background: #124F8E;
+  .right-center-box,.right-top-box,.left-bom-box{
+    height: 33.3333%;
+  }
+}
